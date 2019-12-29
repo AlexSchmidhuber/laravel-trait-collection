@@ -1,6 +1,6 @@
 <?php
 
-namespace AlexSchmidhuber\Traits\General;
+namespace AlexSchmidhuber\LaravelTraitCollection\Traits\ORM;
 
 use Illuminate\Support\Facades\DB;
 
