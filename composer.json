@@ -1,7 +1,7 @@
 {
     "name": "AlexSchmidhuber/laravel-trait-collection",
     "description": "A trait collection for Laravel",
-    "license": "BSD 3 Clause",
+    "license": "BSD-3-Clause",
     "authors": [
         {
             "name": "Alexander Schmidhuber",
