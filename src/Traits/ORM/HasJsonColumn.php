@@ -5,9 +5,15 @@ namespace AlexSchmidhuber\LaravelTraitCollection\Traits\ORM;
 trait HasJsonColumn
 {
 
-    public static function initializeHasJsonColumn()
+    public static function bootHasJsonColumn()
     {
-        $this->fillable[] = $this->setJsonColumn();
+        static::creating(function ($model) {
+            $model->fillable[] = $model->setJsonColumn();
+        });
+
+        static::retrieved(function ($model) {
+            $model->fillable[] = $model->setJsonColumn();
+        });
     }
 
     public function setJsonColumn()
@@ -15,7 +21,7 @@ trait HasJsonColumn
         return 'json';
     }
 
-    public function get($key = null, $column = null)
+    public function getJsonData($key = null, $column = null)
     {
         if(is_null($column)) {
             $column = $this->setJsonColumn();
@@ -30,13 +36,13 @@ trait HasJsonColumn
         }
     }
 
-    public function set(array $data, $column = null)
+    public function setJsonData(array $data, $column = null)
     {
         if(is_null($column)) {
             $column = $this->setJsonColumn();
         }
 
-        $dataStore = is_null($this->get(null, $column)) ? [] : $this->get(null, $column)->toArray();
+        $dataStore = is_null($this->getJsonData(null, $column)) ? [] : $this->getJsonData(null, $column)->toArray();
 
         $this->{$column} = json_encode(array_merge($dataStore, $data));
     }
