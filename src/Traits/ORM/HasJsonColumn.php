@@ -45,5 +45,7 @@ trait HasJsonColumn
         $dataStore = is_null($this->getJsonData(null, $column)) ? [] : $this->getJsonData(null, $column)->toArray();
 
         $this->{$column} = json_encode(array_merge($dataStore, $data));
+
+        return $this;
     }
 }
